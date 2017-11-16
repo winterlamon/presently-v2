@@ -1,0 +1,11 @@
+ <h1><%= @Category.name %></h1>
+
+ <h3>Some product in this category:</h3>
+
+ <ul>
+ <% @listings_array.each do |product| %>
+   <% if product["taxonomy_path"][0] == @Category.name %>
+   <li><b><%= product["title"] %></b></li><br>
+   <%= product["price"] %>
+   <% end %>
+ </ul>
