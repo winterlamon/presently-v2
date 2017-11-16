@@ -1,3 +1,5 @@
 <h1><%= @user.full_name %><h1>
-  <p><%= @user.bio %></p>
-  <h2>here's a user</h2>
+<ul>
+    <li><%= @user.bio %></li>
+      <li><%= link_to @user.category.name, category_path(@user.category) %></li>
+  </ul>
