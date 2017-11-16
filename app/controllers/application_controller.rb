@@ -18,7 +18,7 @@ class ApplicationController < ActionController::Base
     fullData.each do |obj|
       if ["taxonomy_path"][0] != nil
         category = Category.find_or_create_by(name: ["taxonomy_path"][0])
-        product = Product.find_or_create_by(name: ["title"], description: ["description"], price: ["price"], image_url: ["Images"][0]["url_170x135"], category_id: category)
+        product = Product.find_or_create_by(name: ["title"], description: ["description"], price: ["price"], image_url: ["Images"][0]["url_170x135"], listing_url: ["url"], category_id: category)
       end
     end
   end
