@@ -1,6 +1,16 @@
 <h2>Create a New User</h2>
 
 <%= form_for @user do |f| %>
+<ul>
+  <% if @user.errors.any? %>
+  <div id = "error_explanation" >
+    <li>There were some errors:</li>
+  <% @user.errors.full_messages.each do |error| %>
+    <li><%= error %></li>
+    <% end %>
+  <% end %>
+</ul>
+
   <%= f.label :first_name, 'First Name' %>
   <%= f.text_field :first_name %>
   <br>
@@ -20,8 +30,11 @@
   <%= f.label :bio, 'Tell us about yourself:' %>
   <%= f.text_area :bio %>
   <br>
-
-  <%= f.collection_select(:category_ids, Category.all, :id, :name, {:prompt => "Please Select a Three Category Preferences"}, {:multiple => true}) %>
+  <br>
+  <%= f.fields_for :user_categories do |usercat|%>
+  Please select three category preferences:
+  <col><%= f.collection_check_boxes :category_ids, Category.all, :id, :name  %></col>
+  <% end %>
   <br>
   <%= f.submit "Create User" %>
 <% end %>
