@@ -1,8 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Presently - Sharing the Gifts You Want Right Now</title>
-
+    <title>PresentlyGistExchange</title>
     <%= csrf_meta_tags %>
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
@@ -18,12 +17,13 @@
       <% end %>
 
       <div class="nav">
-
-        <% if current_user %>
+        <% if !!session[:user_id] %>
           <ul>
-            <li>Hello, <%= current_user.first_name %>! You are signed in.</li>
-            <li><%= link_to "Profile", user_path(current_user) %></li>
-            <li><%= link_to "Logout", logout_path, method: "delete" %></li>
+            <li>Hello, <%= User.find(session[:user_id]).first_name %>! You are signed in.</li>
+            <li><%= link_to "My Profile", user_path(User.find(session[:user_id])) %></li>
+            <li><%= link_to "Categories", categories_path %></li>
+            <li><%= link_to "Products", products_path %></li>
+            <li><%= link_to "Logout", logout_path, method: :delete %></li>
           </ul>
         <% else %>
           <ul>
