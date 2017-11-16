@@ -32,8 +32,7 @@ steven = User.create(first_name: "Steven", last_name: "Balasta", email: "stevenb
 def product_and_category_creator
   counter = 0
   newData = []
-  byebug
-  while counter < 5000 do
+  while counter < 100 do
     all_listings = RestClient.get(API, {params:{offset: counter}})
     listings = JSON.parse(all_listings)
     newData << listings["results"]
