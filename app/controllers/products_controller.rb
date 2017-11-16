@@ -1,8 +1,7 @@
 class ProductsController < ApplicationController
 
   def index
-    product_and_category_creator
-    if params[:category_id]
+    if params[:category_id] && params[:price]
       @category = Category.find(params[:category_id])
       @products = @category.products
     else

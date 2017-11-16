@@ -1,11 +1,13 @@
- <h1><%= @Category.name %></h1>
+ <h1><%= @category.name %></h1>
+
+ <p><%= link_to "Click here to search", products_path %></p>
+
 
  <h3>Some product in this category:</h3>
 
  <ul>
- <% @listings_array.each do |product| %>
-   <% if product["taxonomy_path"][0] == @Category.name %>
-   <li><b><%= product["title"] %></b></li><br>
-   <%= product["price"] %>
+ <% @category.products.each do |product| %>
+   <li><b><%= link_to product["name"], product.listing_url %></b></li><br>
+   <%= number_to_currency(product["price"]) %>
    <% end %>
  </ul>

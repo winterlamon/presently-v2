@@ -7,8 +7,8 @@
 
 <%= form_tag(products_path, method: :get) do %>
 <%= select_tag "category_id", options_from_collection_for_select(Category.all, :id, :name) %><br>
-<!-- $<%= number_field_tag(:search, params[:search]) %> -->
-<%= submit_tag ("Search") %>
+<%= select_tag "price", options_for_select([["$0-25"], ["$26-50"], ["$51-75"], ["$76-100"]])%>
+<%= submit_tag ("Search") %><br><br><br>
 <% end %>
 
 <!-- <p>
@@ -17,8 +17,7 @@
 #  <%= submit_tag "Search", :name => nil %>
 </p> -->
 
+
 <% @products.each do |product| %>
-<ul>
-  <li><%= link_to product.name, product_path(product) %></li><br>
-</ul>
+  <%= link_to image_tag(product.image_url), product.listing_url %>
 <% end %>

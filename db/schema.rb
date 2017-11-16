@@ -33,6 +33,7 @@ ActiveRecord::Schema.define(version: 20171115230724) do
     t.text "description"
     t.float "price"
     t.string "image_url"
+    t.string "listing_url"
     t.integer "category_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
