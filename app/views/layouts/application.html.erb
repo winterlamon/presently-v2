@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>PresentlyVersion2</title>
+    <title>PresentlyGiftExchange</title>
     <%= csrf_meta_tags %>
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
@@ -9,6 +9,32 @@
   </head>
 
   <body>
+
+    <div class="header">
+    <div class="container">
+      <%= link_to root_path do %>
+        <img src="http://www.clker.com/cliparts/d/6/1/e/1257675768969338833secretlondon_red_present.svg" width="80" height="80">
+      <% end %>
+
+      <div class="nav">
+
+        <% if current_user %>
+          <ul>
+            <li>Hello, <%= current_user.first_name %>! You are signed in.</li>
+            <li><%= link_to "Profile", user_path(current_user) %></li>
+            <li><%= link_to "Logout", logout_path, method: "delete" %></li>
+          </ul>
+        <% else %>
+          <ul>
+            <li><%= link_to "Login", 'login' %></li>
+            <li><%= link_to "Signup", 'signup' %></li>
+          </ul>
+        <% end %>
+
+        </div>
+      </div>
+    </div>
+
     <%= yield %>
   </body>
 </html>
