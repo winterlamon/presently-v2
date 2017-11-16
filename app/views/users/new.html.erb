@@ -21,6 +21,7 @@
   <%= f.text_area :bio %>
   <br>
 
+  <%= f.collection_select(:category_ids, Category.all, :id, :name, {:prompt => "Please Select a Three Category Preferences"}, {:multiple => true}) %>
   <br>
   <%= f.submit "Create User" %>
 <% end %>
