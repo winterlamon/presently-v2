@@ -2,7 +2,7 @@ API = "https://openapi.etsy.com/v2/listings/active?includes=Images(url_170x135)&
 
 
 # USERS (11 users)
-
+#
 winter = User.create(first_name: "Winter", last_name: "LaMon", email: "winterlamon@email.com", password_digest: "password123", bio: "This is my bio. It tells you stuff about me.")
 brian = User.create(first_name: "Brian", last_name: "Boisvert", email: "brianboisvert@email.com", password_digest: "password123", bio: "This is my bio. It tells you stuff about me.")
 elisa = User.create(first_name: "Elisa", last_name: "Vaccaro", email: "elisavaccaro@email.com", password_digest: "password123", bio: "This is my bio. It tells you stuff about me.")
@@ -18,23 +18,22 @@ steven = User.create(first_name: "Steven", last_name: "Balasta", email: "stevenb
 
 # CATEGORIES (8 categories) -- OLD, SEE BELOW FOR GENERATION THROUGH API ITERATION
 
-# jewelry_accessories = Category.create(name: "Jewelry & Accessories")
-# clothing_shoes = Category.create(name: "Clothing & Shoes")
-# home_living = Category.create(name: "Home & Living")
-# wedding_party = Category.create(name: "Wedding & Party")
-# toys_entertainment = Category.create(name: "Toys & Entertainment")
-# art_collectibles = Category.create(name: "Art & Collectibles")
-# craft_supplies_tools = Category.create(name: "Craft Supplies & Tools")
-# vintage = Category.create(name: "Vintage")
+jewelry_accessories = Category.create(name: "Jewelry & Accessories")
+clothing_shoes = Category.create(name: "Clothing & Shoes")
+home_living = Category.create(name: "Home & Living")
+wedding_party = Category.create(name: "Wedding & Party")
+toys_entertainment = Category.create(name: "Toys & Entertainment")
+art_collectibles = Category.create(name: "Art & Collectibles")
+craft_supplies_tools = Category.create(name: "Craft Supplies & Tools")
+vintage = Category.create(name: "Vintage")
 
 # PRODUCTS & CATEGORIES
-
+#
 def product_and_category_creator
   counter = 0
   newData = []
-  byebug
   while counter < 5000 do
-    all_listings = RestClient.get(API, {params:{offset: counter}})
+    all_listings = RestClient.get("https://openapi.etsy.com/v2/listings/active?includes=Images(url_170x135)&fields=title,price,description,url,category_id&limit=1000&api_key=z6u2v4p18o5m8va3gpv5132a", {params:{offset: counter}})
     listings = JSON.parse(all_listings)
     newData << listings["results"]
     counter += 100
