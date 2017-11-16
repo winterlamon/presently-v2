@@ -1,6 +1,6 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
-  helper_method :current_user, :require_user
+  helper_method :current_user, :require_user, :logged_in?
 
 
   def product_and_category_creator
