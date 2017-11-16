@@ -1,6 +1,16 @@
 <h2>Create a New User</h2>
 
 <%= form_for @user do |f| %>
+<ul>
+  <% if @user.errors.any? %>
+  <div id = "error_explanation" >
+    <li>There were some errors:</li>
+  <% @user.errors.full_messages.each do |error| %>
+    <li><%= error %></li>
+    <% end %>
+  <% end %>
+</ul>
+
   <%= f.label :first_name, 'First Name' %>
   <%= f.text_field :first_name %>
   <br>

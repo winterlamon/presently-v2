@@ -216,8 +216,4 @@ DEPENDENCIES
   web-console (>= 3.3.0)
 
 BUNDLED WITH
-<<<<<<< HEAD
    1.16.0
-=======
-   1.16.0.pre.3
->>>>>>> e1a0e04146ec815e59d8217782b10fadb02d7467
