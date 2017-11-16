@@ -40,15 +40,15 @@ def get_all_etsy_listings #parses all the data from JSON into array of hashes
   uri = URI(url)
   response = Net::HTTP.get(uri)
   etsy = JSON.parse(response)
-  n = 1
-  listings_array = []
-  100.times do
+  # n = 1
+  @listings_array = []
+  # 100.times do
     all_listings_hash = etsy
-    listings_array << all_listings_hash["results"]
-    n += 1
+    @listings_array << all_listings_hash["results"]
+    # n += 1
   end
-  listings_array = listings_array.flatten
-  listings_array
+  @listings_array = @listings_array.flatten
+  puts @listings_array
 end
 
 
