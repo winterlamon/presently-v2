@@ -39,8 +39,10 @@ def product_and_category_creator
   end
   fullData = newData.flatten
   fullData.each do |obj|
-    category = Category.find_or_create_by(name: obj["taxonomy_path"][0])
-    product = Product.find_or_create_by(name: obj["title"], description: obj["description"], price: obj["price"].to_f, image_url: obj["Images"][0]["url_170x135"], category_id: Category.find_by(name: obj["taxonomy_path"][0]).id)
+    if ["taxonomy_path"][0] != nil
+      category = Category.find_or_create_by(name: ["taxonomy_path"][0])
+      product = Product.find_or_create_by(name: ["title"], description: ["description"], price: ["price"], image_url: ["Images"][0]["url_170x135"], listing_url: ["url"], category_id: category)
+    end
   end
 end
 
