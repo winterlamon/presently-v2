@@ -5,6 +5,10 @@
   <p>Preferences:</p>
   <p>Click on the links below to find a list of Etsy gifts that fall under these categories!</p>
     <% @user.categories.each do |cat| %>
+<<<<<<< HEAD
        <li><%=  link_to cat.name category_path(cat)%></li>
+=======
+       <li><%=  link_to cat.name, category_path(cat)%></li>
+>>>>>>> d682897c75661cf4aee427f0164856dc1ac42c32
        <% end %>
   </ul>

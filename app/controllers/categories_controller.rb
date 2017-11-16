@@ -1,12 +1,12 @@
 class CategoriesController < ApplicationController
 
   def index
-    get_all_etsy_listings
+    @categories = Category.all
   end
 
   def show
+    # @categories = Category.all
     @category = Category.find(params[:id])
-    get_all_etsy_listings
   end
 
 
