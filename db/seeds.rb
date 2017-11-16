@@ -16,7 +16,7 @@ tim = User.create(first_name: "Tim", last_name: "Campbell", email: "timcampbell@
 steven = User.create(first_name: "Steven", last_name: "Balasta", email: "stevenbalasta@email.com", password_digest: "password123", bio: "This is my bio. It tells you stuff about me.")
 
 
-# CATEGORIES (8 categories)
+# CATEGORIES (8 categories) -- OLD, SEE BELOW FOR GENERATION THROUGH API ITERATION
 
 # jewelry_accessories = Category.create(name: "Jewelry & Accessories")
 # clothing_shoes = Category.create(name: "Clothing & Shoes")
@@ -27,27 +27,12 @@ steven = User.create(first_name: "Steven", last_name: "Balasta", email: "stevenb
 # craft_supplies_tools = Category.create(name: "Craft Supplies & Tools")
 # vintage = Category.create(name: "Vintage")
 
-# PRODUCTS
-
-# def get_all_etsy_listings #parses all the data from JSON into array of hashes
-#   url = 'https://openapi.etsy.com/v2/listings/active?api_key=z6u2v4p18o5m8va3gpv5132a'
-#   uri = URI(url)
-#   response = Net::HTTP.get(uri)
-#   etsy = JSON.parse(response)
-#   # n = 1
-#   @listings_array = []
-#   # 100.times do
-#     all_listings_hash = etsy
-#     @listings_array << all_listings_hash["results"]
-#     # n += 1
-#   end
-#   @listings_array = @listings_array.flatten
-#   puts @listings_array
-# end
+# PRODUCTS & CATEGORIES
 
 def product_and_category_creator
   counter = 0
   newData = []
+  byebug
   while counter < 5000 do
     all_listings = RestClient.get(API, {params:{offset: counter}})
     listings = JSON.parse(all_listings)
@@ -57,7 +42,7 @@ def product_and_category_creator
   fullData = newData.flatten
   fullData.each do |obj|
     category = Category.find_or_create_by(name: obj["taxonomy_path"][0])
-    product = Product.find_or_create_by(name: obj["title"], price: obj["price"].to_f, category_id: Category.find_by(name: obj["taxonomy_path"][0]).id)
+    product = Product.find_or_create_by(name: obj["title"], description: obj["description"], price: obj["price"].to_f, image_url: obj["Images"][0]["url_170x135"], category_id: Category.find_by(name: obj["taxonomy_path"][0]).id)
   end
 end
 
