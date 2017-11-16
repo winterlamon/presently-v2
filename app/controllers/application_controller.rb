@@ -4,6 +4,7 @@ class ApplicationController < ActionController::Base
 
 
   def product_and_category_creator
+    @api = "https://openapi.etsy.com/v2/listings/active?includes=Images(url_170x135)&fields=title,price,description,url,category_id&limit=1000&api_key=z6u2v4p18o5m8va3gpv5132a"
     counter = 0
     newData = []
     while counter < 100 do
