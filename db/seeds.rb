@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # API = "https://openapi.etsy.com/v2/listings/active?includes=Images(url_170x135)&fields=title,price,description,url,category_id&limit=1000&api_key=z6u2v4p18o5m8va3gpv5132a"
 
 
@@ -16,35 +17,26 @@ steven = User.create(first_name: "Steven", last_name: "Balasta", email: "stevenb
 
 
 
-# CATEGORIES (8 categories) -- OLD, SEE BELOW FOR GENERATION THROUGH API ITERATION
-
-# jewelry_accessories = Category.create(name: "Jewelry & Accessories")
-# clothing_shoes = Category.create(name: "Clothing & Shoes")
-# home_living = Category.create(name: "Home & Living")
-# wedding_party = Category.create(name: "Wedding & Party")
-# toys_entertainment = Category.create(name: "Toys & Entertainment")
-# art_collectibles = Category.create(name: "Art & Collectibles")
-# craft_supplies_tools = Category.create(name: "Craft Supplies & Tools")
-# vintage = Category.create(name: "Vintage")
-
 # PRODUCTS & CATEGORIES
-# def product_and_category_creator
-#   counter = 0
-#   newData = []
-#   while counter < 1000 do
-#     all_listings = RestClient.get("https://openapi.etsy.com/v2/listings/active?includes=Images(url_170x135)&fields=title,price,description,url,category_id&limit=100&api_key=z6u2v4p18o5m8va3gpv5132a", {params:{offset: counter}})
-#     listings = JSON.parse(all_listings)
-#     newData << listings["results"]
-#     counter += 100
-#   end
-#   fullData = newData.flatten
-#   fullData.each do |obj|
-#     if obj["taxonomy_path"][0] != nil
-#       category = Category.find_or_create_by(name: obj["taxonomy_path"][0])
-#       product = Product.find_or_create_by(name: obj["title"], description: obj["description"], price: obj["price"].to_f, image_url: obj["Images"][0]["url_170x135"], category_id: Category.find_by(name: obj["taxonomy_path"][0]).id)
-#     end
-#   end
-# end
+
+def product_and_category_creator
+  counter = 0
+  newData = []
+  while counter < 1000 do
+    all_listings = RestClient.get("https://openapi.etsy.com/v2/listings/active?includes=Images(url_170x135)&fields=title,price,description,url,category_id&limit=1000&api_key=z6u2v4p18o5m8va3gpv5132a", {params:{offset: counter}})
+    listings = JSON.parse(all_listings)
+    newData << listings["results"]
+    counter += 100
+  end
+  fullData = newData.flatten
+  fullData.each do |obj|
+    if obj["taxonomy_path"][0] != nil
+     category = Category.find_or_create_by(name: obj["taxonomy_path"][0])
+     product = Product.find_or_create_by(name: obj["title"], description: obj["description"], price: obj["price"], image_url: obj["Images"][0]["url_170x135"], listing_url: obj["url"], category_id: Category.find_by(name: obj["taxonomy_path"][0]).id)
+    end
+  end
+end
+
 
 # def all_category_names
 #   Category.all.map {|category| puts category.name }

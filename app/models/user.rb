@@ -10,6 +10,9 @@ class User < ApplicationRecord
   validates_email_format_of :email, :message => 'is not a valid email.'
   validates :password, length: {minimum: 8}
 
+  # validates :category_ids, length: {is: 3, :message => "Please select 3 categories."}
+
+
   def full_name
     "#{self.first_name} #{self.last_name}"
   end

@@ -7,21 +7,26 @@ class ApplicationController < ActionController::Base
     @api = "https://openapi.etsy.com/v2/listings/active?includes=Images(url_170x135)&fields=title,price,description,url,category_id&limit=1000&api_key=z6u2v4p18o5m8va3gpv5132a"
     counter = 0
     newData = []
-    while counter < 100 do
-      all_listings = RestClient.get(@api, {params:{offset: counter}})
+    while counter < 1000 do
+      all_listings = RestClient.get("https://openapi.etsy.com/v2/listings/active?includes=Images(url_170x135)&fields=title,price,description,url,category_id&limit=1000&api_key=z6u2v4p18o5m8va3gpv5132a", {params:{offset: counter}})
       listings = JSON.parse(all_listings)
       newData << listings["results"]
       counter += 100
     end
     fullData = newData.flatten
-
     fullData.each do |obj|
-      if ["taxonomy_path"][0] != nil
-        category = Category.find_or_create_by(name: ["taxonomy_path"][0])
-        product = Product.find_or_create_by(name: ["title"], description: ["description"], price: ["price"], image_url: ["Images"][0]["url_170x135"], listing_url: ["url"], category_id: category)
+      if obj["taxonomy_path"][0] != nil
+       category = Category.find_or_create_by(name: obj["taxonomy_path"][0])
+       product = Product.find_or_create_by(name: obj["title"], description: obj["description"], price: obj["price"], image_url: obj["Images"][0]["url_170x135"], listing_url: obj["url"], category_id: Category.find_by(name: obj["taxonomy_path"][0]).id)
       end
     end
   end
+
+  def all_category_names
+    Category.all.map {|category| puts category.name }
+  end
+
+
 
   def all_category_names
     Category.all.map {|category| puts category.name }
