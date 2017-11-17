@@ -1,4 +1,5 @@
-<<<<<<< HEAD
+
+
 # API = "https://openapi.etsy.com/v2/listings/active?includes=Images(url_170x135)&fields=title,price,description,url,category_id&limit=1000&api_key=z6u2v4p18o5m8va3gpv5132a"
 
 
@@ -32,7 +33,7 @@ def product_and_category_creator
   fullData.each do |obj|
     if obj["taxonomy_path"][0] != nil
      category = Category.find_or_create_by(name: obj["taxonomy_path"][0])
-     product = Product.find_or_create_by(name: obj["title"], description: obj["description"], price: obj["price"], image_url: obj["Images"][0]["url_170x135"], listing_url: obj["url"], category_id: Category.find_by(name: obj["taxonomy_path"][0]).id)
+     product = Product.find_or_create_by(name: obj["title"], description: obj["description"], price: obj["price"].to_f, image_url: obj["Images"][0]["url_170x135"], listing_url: obj["url"], category_id: Category.find_by(name: obj["taxonomy_path"][0]).id)
     end
   end
 end
@@ -47,36 +48,36 @@ end
 
 # user_categories
 
-# user_category1 = UserCategory.find_or_create_by(user_id: 1, category_id: Category.all.sample.id)
-# user_category2 = UserCategory.find_or_create_by(user_id: 2, category_id: Category.all.sample.id)
-# user_category3 = UserCategory.find_or_create_by(user_id: 3, category_id: Category.all.sample.id)
-# user_category4 = UserCategory.find_or_create_by(user_id: 4, category_id: Category.all.sample.id)
-# user_category5 = UserCategory.find_or_create_by(user_id: 5, category_id: Category.all.sample.id)
-# user_category6 = UserCategory.find_or_create_by(user_id: 6, category_id: Category.all.sample.id)
-# user_category7 = UserCategory.find_or_create_by(user_id: 7, category_id: Category.all.sample.id)
-# user_category8 = UserCategory.find_or_create_by(user_id: 8, category_id: Category.all.sample.id)
-# user_category9 = UserCategory.find_or_create_by(user_id: 9, category_id: Category.all.sample.id)
-# user_category10 = UserCategory.find_or_create_by(user_id: 10, category_id: Category.all.sample.id)
-# user_category11 = UserCategory.find_or_create_by(user_id: 11, category_id: Category.all.sample.id)
-# user_category12 = UserCategory.find_or_create_by(user_id: 1, category_id: Category.all.sample.id)
-# user_category13 = UserCategory.find_or_create_by(user_id: 2, category_id: Category.all.sample.id)
-# user_category14 = UserCategory.find_or_create_by(user_id: 3, category_id: Category.all.sample.id)
-# user_category15 = UserCategory.find_or_create_by(user_id: 4, category_id: Category.all.sample.id)
-# user_category16 = UserCategory.find_or_create_by(user_id: 5, category_id: Category.all.sample.id)
-# user_category17 = UserCategory.find_or_create_by(user_id: 6, category_id: Category.all.sample.id)
-# user_category18 = UserCategory.find_or_create_by(user_id: 7, category_id: Category.all.sample.id)
-# user_category19 = UserCategory.find_or_create_by(user_id: 8, category_id: Category.all.sample.id)
-# user_category20 = UserCategory.find_or_create_by(user_id: 9, category_id: Category.all.sample.id)
-# user_category21 = UserCategory.find_or_create_by(user_id: 10, category_id: Category.all.sample.id)
-# user_category22 = UserCategory.find_or_create_by(user_id: 11, category_id: Category.all.sample.id)
-# user_category23 = UserCategory.find_or_create_by(user_id: 1, category_id: Category.all.sample.id)
-# user_category24 = UserCategory.find_or_create_by(user_id: 2, category_id: Category.all.sample.id)
-# user_category25 = UserCategory.find_or_create_by(user_id: 3, category_id: Category.all.sample.id)
-# user_category26 = UserCategory.find_or_create_by(user_id: 4, category_id: Category.all.sample.id)
-# user_category27 = UserCategory.find_or_create_by(user_id: 5, category_id: Category.all.sample.id)
-# user_category28 = UserCategory.find_or_create_by(user_id: 6, category_id: Category.all.sample.id)
-# user_category29 = UserCategory.find_or_create_by(user_id: 7, category_id: Category.all.sample.id)
-# user_category30 = UserCategory.find_or_create_by(user_id: 8, category_id: Category.all.sample.id)
-# user_category31 = UserCategory.find_or_create_by(user_id: 9, category_id: Category.all.sample.id)
-# user_category32 = UserCategory.find_or_create_by(user_id: 10, category_id: Category.all.sample.id)
-# user_category33 = UserCategory.find_or_create_by(user_id: 11, category_id: Category.all.sample.id)
+user_category1 = UserCategory.find_or_create_by(user_id: 1, category_id: Category.all.sample.id)
+user_category2 = UserCategory.find_or_create_by(user_id: 2, category_id: Category.all.sample.id)
+user_category3 = UserCategory.find_or_create_by(user_id: 3, category_id: Category.all.sample.id)
+user_category4 = UserCategory.find_or_create_by(user_id: 4, category_id: Category.all.sample.id)
+user_category5 = UserCategory.find_or_create_by(user_id: 5, category_id: Category.all.sample.id)
+user_category6 = UserCategory.find_or_create_by(user_id: 6, category_id: Category.all.sample.id)
+user_category7 = UserCategory.find_or_create_by(user_id: 7, category_id: Category.all.sample.id)
+user_category8 = UserCategory.find_or_create_by(user_id: 8, category_id: Category.all.sample.id)
+user_category9 = UserCategory.find_or_create_by(user_id: 9, category_id: Category.all.sample.id)
+user_category10 = UserCategory.find_or_create_by(user_id: 10, category_id: Category.all.sample.id)
+user_category11 = UserCategory.find_or_create_by(user_id: 11, category_id: Category.all.sample.id)
+user_category12 = UserCategory.find_or_create_by(user_id: 1, category_id: Category.all.sample.id)
+user_category13 = UserCategory.find_or_create_by(user_id: 2, category_id: Category.all.sample.id)
+user_category14 = UserCategory.find_or_create_by(user_id: 3, category_id: Category.all.sample.id)
+user_category15 = UserCategory.find_or_create_by(user_id: 4, category_id: Category.all.sample.id)
+user_category16 = UserCategory.find_or_create_by(user_id: 5, category_id: Category.all.sample.id)
+user_category17 = UserCategory.find_or_create_by(user_id: 6, category_id: Category.all.sample.id)
+user_category18 = UserCategory.find_or_create_by(user_id: 7, category_id: Category.all.sample.id)
+user_category19 = UserCategory.find_or_create_by(user_id: 8, category_id: Category.all.sample.id)
+user_category20 = UserCategory.find_or_create_by(user_id: 9, category_id: Category.all.sample.id)
+user_category21 = UserCategory.find_or_create_by(user_id: 10, category_id: Category.all.sample.id)
+user_category22 = UserCategory.find_or_create_by(user_id: 11, category_id: Category.all.sample.id)
+user_category23 = UserCategory.find_or_create_by(user_id: 1, category_id: Category.all.sample.id)
+user_category24 = UserCategory.find_or_create_by(user_id: 2, category_id: Category.all.sample.id)
+user_category25 = UserCategory.find_or_create_by(user_id: 3, category_id: Category.all.sample.id)
+user_category26 = UserCategory.find_or_create_by(user_id: 4, category_id: Category.all.sample.id)
+user_category27 = UserCategory.find_or_create_by(user_id: 5, category_id: Category.all.sample.id)
+user_category28 = UserCategory.find_or_create_by(user_id: 6, category_id: Category.all.sample.id)
+user_category29 = UserCategory.find_or_create_by(user_id: 7, category_id: Category.all.sample.id)
+user_category30 = UserCategory.find_or_create_by(user_id: 8, category_id: Category.all.sample.id)
+user_category31 = UserCategory.find_or_create_by(user_id: 9, category_id: Category.all.sample.id)
+user_category32 = UserCategory.find_or_create_by(user_id: 10, category_id: Category.all.sample.id)
+user_category33 = UserCategory.find_or_create_by(user_id: 11, category_id: Category.all.sample.id)
