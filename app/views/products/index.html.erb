@@ -6,8 +6,8 @@
 #<% end %> -->
 
 <%= form_tag(products_path, method: :get) do %>
-<%= select_tag "category_id", options_from_collection_for_select(Category.all, :id, :name) %><br>
-<%= select_tag "price", options_for_select([["$0-25"], ["$26-50"], ["$51-75"], ["$76-100"]])%>
+<%= select_tag "category_id", options_from_collection_for_select(Category.all, :id, :name), :prompt => "Category" %><br>
+<%= select_tag "price", options_for_select([["$0-25"], ["$26-50"], ["$51-75"], ["$76-100"], ["above $100"]]), :prompt => "Price" %>
 <%= submit_tag ("Search") %><br><br><br>
 <% end %>
 
