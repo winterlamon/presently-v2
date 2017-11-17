@@ -1,0 +1,15 @@
+<h1>Product</h1>
+<h4><%= number_to_currency(@product.price) %></h4>
+
+<%= link_to image_tag(@product.image_url), @product.listing_url %>
+
+<p>Add to Favorites</p>
+<%= form_for :user_product, url: user_products_path do |f| %>
+<%= f.hidden_field :user_id, value: session[:user_id] %>
+<%= f.hidden_field :product_id, value: @product.id %>
+<%= f.submit "Add Favorite" %>
+<% end %>
+
+<div>
+<p><%= @product.description %></p>
+</div>
