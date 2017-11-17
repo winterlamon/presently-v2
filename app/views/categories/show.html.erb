@@ -1,13 +1,22 @@
- <h1><%= @category.name %></h1>
+<div class="w3-container w3-display-center w3-margin">
 
- <p><%= link_to "Click here to search", products_path %></p>
+    <div class="w3-container w3-padding-48">
+      <h1><strong><%= @category.name %></strong><h1>
+    </div>
+
+    <div class="w3-container">
+     <h3><%= link_to "Click here to search", products_path %></h3>
+    </div>
+
+    <div class="w3-container">
+     <h3>Products in this category:</h3>
 
 
- <h3>Some product in this category:</h3>
+     <% @category.products.each do |product| %>
+       <b><%= link_to product["name"], product.listing_url %></b>     <%= number_to_currency(product["price"]) %><br>
 
- <ul>
- <% @category.products.each do |product| %>
-   <li><b><%= link_to product["name"], product.listing_url %></b></li><br>
-   <%= number_to_currency(product["price"]) %>
-   <% end %>
- </ul>
+       <% end %>
+
+    </div>
+
+</div>

@@ -23,7 +23,7 @@ steven = User.create(first_name: "Steven", last_name: "Balasta", email: "stevenb
 def product_and_category_creator
   counter = 0
   newData = []
-  while counter < 1000 do
+  while counter < 6000 do
     all_listings = RestClient.get("https://openapi.etsy.com/v2/listings/active?includes=Images(url_170x135)&fields=title,price,description,url,category_id&limit=1000&api_key=z6u2v4p18o5m8va3gpv5132a", {params:{offset: counter}})
     listings = JSON.parse(all_listings)
     newData << listings["results"]
