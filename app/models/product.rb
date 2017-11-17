@@ -6,6 +6,8 @@ class Product < ApplicationRecord
     if search
       category = Category.find(search)
       if category
+        self.where(category_id: category.id)
+          if price
         self.where(category_id: category.id).dollar_range
       else
         Product.all
