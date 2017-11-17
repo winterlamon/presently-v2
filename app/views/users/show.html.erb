@@ -1,6 +1,5 @@
 
 <div class="w3-container">
-
 <h1><%= @user.full_name %><h1>
 <ul>
   Biography:  <%= @user.bio %>
@@ -12,6 +11,23 @@
        <% end %>
   </ul>
 </div>
+
+<% for @user  %>
+  <div class="user">
+    <p>
+      <strong><%=h @user.full_name %></strong>
+      <%= link_to "Add Friend", friendships_path(:friend_id => @user), :method => :post %>
+      <div class="clear"></div>
+    </p>
+  </div>
+<% end %>
+
+<h2>My Friends</h2>
+<ul>
+  <% for user in @user.friends %>
+  <li><%= user.username %></li>
+  <% end %>
+</ul>
 
 <h3>Favorites</h3>
 <% @user.products.each do |favorite| %>

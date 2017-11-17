@@ -9,7 +9,7 @@ class UserProductsController < ApplicationController
     if @favorite.save
       redirect_to user_path(session[:user_id])
     else
-      redirect_to products_path
+      redirect_to products_pathn
     end
   end
 

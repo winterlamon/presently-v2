@@ -5,6 +5,8 @@ class User < ApplicationRecord
   accepts_nested_attributes_for :categories
   has_many :user_products
   has_many :products, through: :user_products
+  has_many :friendships
+  has_many :friends, through: :friendships
 
 
   validates :first_name, presence: true
