@@ -1,17 +1,23 @@
 <header class="bgimg-1 w3-display-container w3-grayscale-min" id="home">
   <div class="w3-display-left w3-text-white" style="padding:48px">
     <!-- <span class="w3-jumbo w3-hide-small">Log in to your account</span><br> -->
-    <h2>Log in to your account</h2>
-    <%= form_for(:session, url: login_path) do |f| %>
-      <%= f.label :email, 'Email', :html => {:class => "c-label"} %><br>
-      <%= f.email_field :email, :placeholder => "Email" %>
-      <br><br>
-      <%= f.label :password, 'Password', :html => {:class => "c-label"} %><br>
-      <%= f.password_field :password, :placeholder => "Password" %>
-      <br><br>
-      <%= f.submit "LOGIN", class: "w3-button w3-white w3-padding-large w3-large w3-margin-top w3-opacity w3-hover-opacity-off" %>
-    <% end %>
-    <p>Don't have an account yet?
-    <a href="/signup" class="w3-button w3-white w3-padding-large w3-large w3-margin-top w3-opacity w3-hover-opacity-off">CREATE AN ACCOUNT</a></p>
+      <div class="w3-container">
+            <h2>Log In to Your Account</h2>
+              <%= form_for(:session, url: login_path) do |f| %>
+                <%= f.label :email, 'Email', :html => {:class => "c-label"} %><br>
+                <%= f.email_field :email, :placeholder => "Email" %>
+                <br><br>
+                <%= f.label :password, 'Password', :html => {:class => "c-label"} %><br>
+                <%= f.password_field :password, :placeholder => "Password" %>
+                <br><br>
+                <%= f.submit "LOGIN", :html => {:class => "w3-button w3-white w3-padding-large w3-large w3-margin-top w3-opacity w3-hover-opacity-off"} %>
+              <% end %>
+      </div>
+
+    <div class="w3-container w3-padding-48">
+        <p>Don't have an account yet?</p>
+        <a href="/signup" class="w3-button w3-white w3-padding-large w3-large w3-margin-top w3-opacity w3-hover-opacity-off">CREATE AN ACCOUNT</a>
+    </div>
+
   </div>
 </header>
