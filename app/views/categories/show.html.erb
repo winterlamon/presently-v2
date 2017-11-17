@@ -4,19 +4,19 @@
       <h1><strong><%= @category.name %></strong><h1>
     </div>
 
-<div class="w3-container">
- <h3><%= link_to "Click here to search", products_path %></h3>
-</div>
+    <div class="w3-container">
+     <h3><%= link_to "Click here to search", products_path %></h3>
+    </div>
 
-<div class="w3-container">
- <h3>Products in this category:</h3>
+    <div class="w3-container">
+     <h3>Products in this category:</h3>
 
- <ul>
- <% @category.products.each do |product| %>
-   <li><b><%= link_to product["name"], product.listing_url %></b>     <%= number_to_currency(product["price"]) %></li>
 
-   <% end %>
- </ul>
-</div>
+     <% @category.products.each do |product| %>
+       <b><%= link_to product["name"], product.listing_url %></b>     <%= number_to_currency(product["price"]) %><br>
+
+       <% end %>
+
+    </div>
 
 </div>

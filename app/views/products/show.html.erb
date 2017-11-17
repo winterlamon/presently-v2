@@ -4,7 +4,9 @@
       <h1><strong><%= @product.name %></strong><h1>
     </div>
 
+    <div class="w3-container w3-padding-48">
     <%= link_to image_tag(@product.image_url), @product.listing_url %>
+    </div>
 
     <div class="w3-container w3-padding-24">
       <h4><%= number_to_currency(@product.price) %><h4>
