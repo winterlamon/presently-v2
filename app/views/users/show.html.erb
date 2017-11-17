@@ -2,34 +2,35 @@
 <div class="w3-container">
 <h1><%= @user.full_name %><h1>
 <ul>
-  Biography:  <%= @user.bio %>
+  <h2About Me  <%= @user.bio %>
   <br>
-  <p>Preferences:</p>
-  <p>Click on the links below to find a list of Etsy gifts that fall under these categories!</p>
+  <p>My Preferenced Categories</p>
+  <p></p>
     <% @user.categories.each do |cat| %>
        <li><%=  link_to cat.name, category_path(cat)%></li>
        <% end %>
   </ul>
 </div>
 
+<div class="w3-container">
 <% for @user  %>
   <div class="user">
     <p>
-      <strong><%=h @user.full_name %></strong>
-      <%= link_to "Add Friend", friendships_path(:friend_id => @user), :method => :post %>
+      <strong><%= @user.full_name %></strong>
+      <%= link_to "Add Me to Your Friends", friendships_path(:friend_id => @user), :method => :post %>
       <div class="clear"></div>
     </p>
   </div>
-<% end %>
+</div>
 
-<h2>My Friends</h2>
-<ul>
-  <% for user in @user.friends %>
-  <li><%= user.username %></li>
-  <% end %>
-</ul>
+<div class="w3-container">
+<h3>My Friends</h3>
+</div>
 
-<h3>Favorites</h3>
+
+<div class="w3-container">
+<h2>Favorite Products</h2>
 <% @user.products.each do |favorite| %>
 		<%= link_to image_tag(favorite.image_url), favorite.listing_url %>
 <% end %>
+</div>
