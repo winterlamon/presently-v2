@@ -1,24 +1,37 @@
-<h1>Search for a product</h1>
+<div class="w3-container w3-display-center w3-margin">
+
+    <div class="w3-container w3-padding-48">
+      <h1><strong>Search Products</strong><h1>
+    </div>
+
+
+    <div class="w3-container">
+        <%= form_tag(products_path, method: :get) do %>
+            <%= select_tag "category_id", options_from_collection_for_select(Category.all, :id, :name, @previous_category), :prompt => "All Categories" %>
+            <%= select_tag "price", options_for_select([["$0-25"], ["$26-50"], ["$51-75"], ["$76-100"], ["above $100"]], @previous_price), :prompt => "Price" %>
+            <%= submit_tag ("Search") %>
+        <% end %>
+    </div>
+
+
+    <div class="w3-container w3-padding-48">
+        <% @products.each do |product| %>
+              <!-- #<%= link_to image_tag(product.image_url), product.listing_url %> -->
+              <%= link_to image_tag(product.image_url), product_path(product) %>
+        <% end %>
+    </div>
+
+
+
+</div>
+
+<!-- <p>
+#<%= text_field_tag :search, params[:search] %>
+#  <%= select_tag :search_column, options_for_select(Product.column_names, params[:search_column]) %>
+#  <%= submit_tag "Search", :name => nil %>
+</p> -->
 
 <!-- #<%= form_tag(products_path, method: :get) do %>
 #  <%= text_field_tag(:search, params[:search]) %>
 #  <%= submit_tag ("Search") %>
 #<% end %> -->
-
-<%= form_tag(products_path, method: :get) do %>
-<%= select_tag "category_id", options_from_collection_for_select(Category.all, :id, :name, @previous_category), :prompt => "All Categories" %><br>
-<%= select_tag "price", options_for_select([["$0-25"], ["$26-50"], ["$51-75"], ["$76-100"], ["above $100"]], @previous_price), :prompt => "Price" %>
-<%= submit_tag ("Search") %><br><br><br>
-<% end %>
-
-<!-- <p>
-  #<%= text_field_tag :search, params[:search] %>
-#  <%= select_tag :search_column, options_for_select(Product.column_names, params[:search_column]) %>
-#  <%= submit_tag "Search", :name => nil %>
-</p> -->
-
-
-<% @products.each do |product| %>
-  <!-- #<%= link_to image_tag(product.image_url), product.listing_url %> -->
-  <%= link_to image_tag(product.image_url), product_path(product) %>
-<% end %>
