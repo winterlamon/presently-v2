@@ -1,15 +1,28 @@
-<h1>Product</h1>
-<h4><%= number_to_currency(@product.price) %></h4>
+<div class="w3-container w3-display-center w3-margin">
 
-<%= link_to image_tag(@product.image_url), @product.listing_url %>
+    <div class="w3-container w3-padding-48">
+      <h1><strong><%= @product.name %></strong><h1>
+    </div>
 
-<p>Add to Favorites</p>
-<%= form_for :user_product, url: user_products_path do |f| %>
-<%= f.hidden_field :user_id, value: session[:user_id] %>
-<%= f.hidden_field :product_id, value: @product.id %>
-<%= f.submit "Add Favorite" %>
-<% end %>
+    <div class="w3-container">
+      <%= link_to image_tag(@product.image_url), @product.listing_url %>
+    </div>
 
-<div>
-<p><%= @product.description %></p>
+    <div class="w3-container w3-padding-24">
+      <h4><%= number_to_currency(@product.price) %><h4>
+    </div>
+
+    <div class="w3-container w3-padding-24">
+        <%= form_for :user_product, url: user_products_path do |f| %>
+        <%= f.hidden_field :user_id, value: session[:user_id] %>
+        <%= f.hidden_field :product_id, value: @product.id %>
+        <%= f.submit "Add to Favorite Products" %>
+        <% end %>
+    </div>
+
+    <div class="w3-container w3-padding-24">
+        <p><%= @product.description %></p>
+    </div>
+
+
 </div>
