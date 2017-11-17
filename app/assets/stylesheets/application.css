@@ -213,6 +213,7 @@ h1 {
 body, html {
     height: 100%;
     line-height: 1.8;
+    font-size: 24px;
 }
 /* Full height image header */
 .bgimg-1 {
