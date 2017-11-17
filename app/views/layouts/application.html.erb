@@ -1,41 +1,53 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>PresentlyGistExchange</title>
-    <%= csrf_meta_tags %>
+       <meta charset="utf-8">
+       <meta http-equiv="X-UA-Compatible" content="IE=edge">
+       <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+       <title>Presently - Sharing the Gifts You Want Right Now</title>
+
+       <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+       <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+
+       <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+       <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+       <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans">
+       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+       <!-- Optional Bootstrap theme -->
+     <!-- <link rel="stylesheet" href="app/assets/stylesheets/bootstrapstyles.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous"> -->
   </head>
 
-  <body>
+      <body>
 
-    <div class="header">
-    <div class="container">
-      <%= link_to root_path do %>
-        <img src="http://www.clker.com/cliparts/d/6/1/e/1257675768969338833secretlondon_red_present.svg" width="80" height="80">
-      <% end %>
+      <!-- Navbar (sit on top) -->
+          <div class="w3-top">
+            <div class="w3-bar w3-white w3-card" id="myNavbar">
+              <a href="/" class="w3-bar-item w3-button w3-wide">PRESENTLY</a>
+                <!-- <img src="http://www.clker.com/cliparts/d/6/1/e/1257675768969338833secretlondon_red_present.svg" width="50" height="50"></a> -->
+              <!-- Right-sided navbar links -->
+              <div class="w3-right w3-hide-small">
+                <% if !!session[:user_id] %>
+                    <a href="/users/<%= session[:user_id] %>" class="w3-bar-item w3-button">PROFILE</a>
+                    <a href="/categories" class="w3-bar-item w3-button">CATEGORIES</a>
+                    <a href="/products" class="w3-bar-item w3-button">PRODUCTS</a>
+                    <a href="/logout" class="w3-bar-item w3-button">LOGOUT</a>
+                <% else %>
+                    <a href="/login" class="w3-bar-item w3-button">LOGIN</a>
+                    <a href="users/new" class="w3-bar-item w3-button">CREATE AN ACCOUNT</a>
+                <% end %>
+              </div>
+            </div>
+          </div>
 
-      <div class="nav">
-        <% if !!session[:user_id] %>
-          <ul>
-            <li>Hello, <%= User.find(session[:user_id]).first_name %>! You are signed in.</li>
-            <li><%= link_to "My Profile", user_path(User.find(session[:user_id])) %></li>
-            <li><%= link_to "Categories", categories_path %></li>
-            <li><%= link_to "Products", products_path %></li>
-            <li><%= link_to "Logout", logout_path, method: :delete %></li>
-          </ul>
-        <% else %>
-          <ul>
-            <li><%= link_to "Login", 'login' %></li>
-            <li><%= link_to "Signup", 'signup' %></li>
-          </ul>
-        <% end %>
+            <%= yield %>
 
-        </div>
+      <!-- Footer -->
+      <div class="w3-bottom">
+        <footer class="w3-center w3-black w3-padding-24">
+            <p>Presently is a project made by Brian Boisvert, Winter LaMon, and Elisa Vaccaro for <a href="https://flatironschool.com/" title="W3.CSS" target="_blank" class="w3-hover-text-green">Flatiron School</a>.</p>
+        </footer>
       </div>
-    </div>
 
-    <%= yield %>
-  </body>
+    </body>
 </html>
