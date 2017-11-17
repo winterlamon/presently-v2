@@ -1,27 +1,48 @@
-<h2>Create a New User</h2>
+<header class="bgimg-1 w3-display-container w3-grayscale-min" id="home">
+    <div class="w3-display-left w3-text-white" style="padding:48px">
 
-<%= form_for @user do |f| %>
-  <%= f.label :first_name, 'First Name' %>
-  <%= f.text_field :first_name %>
-  <br>
-  <br>
-  <%= f.label :last_name, 'Last Name' %>
-  <%= f.text_field :last_name %>
-  <br>
-  <br>
-  <%= f.label :email, 'Email' %>
-  <%= f.text_field :email %>
-  <br>
-  <br>
-  <%= f.label :password, 'Password' %>
-  <%= f.text_field :password %>
-  <br>
-  <br>
-  <%= f.label :bio, 'Tell us about yourself:' %>
-  <%= f.text_area :bio %>
-  <br>
+        <div class="w3-card">
 
-  <%= f.collection_select(:category_ids, Category.all, :id, :name, {:prompt => "Please Select a Three Category Preferences"}, {:multiple => true}) %>
+<%= form_for @user, :html => {:class => "w3-container"} do |f| %>
+<div class="w3-container">
+<ul>
+  <% if @user.errors.any? %>
+  <div id = "error_explanation" >
+    <li>There were some errors:</li>
+  <% @user.errors.full_messages.each do |error| %>
+    <li><%= error %></li>
+    <% end %>
+  <% end %>
+</ul>
+  <%= f.label :first_name, 'First Name', :html => {:class => "w3-container"} %><br>
+  <%= f.text_field :first_name, :html => {:class => "w3-input", :type => "text"} %>
   <br>
-  <%= f.submit "Create User" %>
+  <br>
+  <%= f.label :last_name, 'Last Name', :html => {:class => "w3-container"} %><br>
+  <%= f.text_field :last_name, :html => {:class => "w3-input", :type => "text"} %>
+  <br>
+  <br>
+  <%= f.label :email, 'Email', :html => {:class => "w3-container"} %><br>
+  <%= f.text_field :email, :html => {:class => "w3-input", :type => "text"} %>
+  <br>
+  <br>
+  <%= f.label :password, 'Password', :html => {:class => "w3-container"} %><br>
+  <%= f.text_field :password, :html => {:class => "w3-input", :type => "text"} %>
+  <br>
+  <br>
+  <%= f.label :bio, 'Tell us about yourself:', :html => {:class => "w3-container"} %><br>
+  <%= f.text_area :bio, :html => {:class => "w3-input", :type => "text"} %>
+
+    <%= f.fields_for :user_categories, :html => {:class => "w3-check", :type => "checkbox"} do |usercat| %>
+    Please select three category preferences:
+    <col><%= f.collection_check_boxes :category_ids, Category.all, :id, :name, :html => {:class => "w3-check", :type => "checkbox"}  %></col>
+    <% end %>
+  <br>
+  <%= f.submit "Create User", :html => {:class => "w3-button w3-white w3-padding-large w3-large w3-margin-top w3-opacity w3-hover-opacity-off"} %>
 <% end %>
+</div>
+</div>
+      </div>
+
+    </div>
+</header>

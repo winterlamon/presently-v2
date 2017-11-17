@@ -1,3 +1,14 @@
+
+<div class="w3-container">
+
 <h1><%= @user.full_name %><h1>
-  <p><%= @user.bio %></p>
-  <h2>here's a user</h2>
+<ul>
+  Biography:  <%= @user.bio %>
+  <br>
+  <p>Preferences:</p>
+  <p>Click on the links below to find a list of Etsy gifts that fall under these categories!</p>
+    <% @user.categories.each do |cat| %>
+       <li><%=  link_to cat.name, category_path(cat)%></li>
+       <% end %>
+  </ul>
+</div>
