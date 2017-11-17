@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   resources :products
   resources :categories
   resources :users
+  resources :user_products
 
   get '/signup', to: 'users#new', as: 'signup'
   get '/login', to: 'sessions#new', as: 'login'

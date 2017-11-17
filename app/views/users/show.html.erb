@@ -12,3 +12,8 @@
        <% end %>
   </ul>
 </div>
+
+<h3>Favorites</h3>
+<% @user.products.each do |favorite| %>
+		<%= link_to image_tag(favorite.image_url), favorite.listing_url %>
+<% end %>
