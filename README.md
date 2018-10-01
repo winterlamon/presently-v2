@@ -14,7 +14,7 @@ Clone this repository to your local devise.
 
 Run the following commands in your terminal:
 ```
-bundle instal
+bundle install
 ```
 ```
 rails s
